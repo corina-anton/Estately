@@ -30,7 +30,7 @@ It will return returns the **value** of the item with the specified key.<br>
 If `get()` doesn’t find any object, it raises a  [Model.DoesNotExist](https://docs.djangoproject.com/en/3.2/ref/models/class/#django.db.models.Model.DoesNotExist) exception.<br>
 If `get()` finds more than one object, it raises a [Model.MultipleObjectsReturned](https://docs.djangoproject.com/en/3.2/ref/models/class/#django.db.models.Model.MultipleObjectsReturned) exception.<br>
 
-3. **The `QuerySet.exists()` method**
+3. **The `QuerySet.exists()` method**<br>
 The `QuerySet.exists()` method is applied **ON** a QuerySet, meaning you ask the model: *are there any instances matching this query?* Note that you’re **NOT** yet attempting to retrieve any specific instance, you only check if it exists.<br>
 The `exists()` method will return a **boolean**: true if there is at least one result, false otherwise.<br><br>
 
