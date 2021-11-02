@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="latest">
+  <div class="container">
+    <div class="row justify-content-start">
+      <a href="{% url 'EstatelyApp:dashboard' %}"><h5>Back to dashboard</h5></a>
+
+      {% if error %}
+        <div class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+
+      {% elif success %}
+        <div class="alert alert-success" role="alert">
+          {{ success }}
+        </div>
+
+      {% elif property %}
+
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'EstatelyApp:edit' property.id %}"><i class="far fa-edit"></i></a>
+          <a href=" {% url 'EstatelyApp:delete' property.id %}"><p>Delete this property</p><a>
+        {% endif %}
+
+        <h1>{{ property.title }}</h1>
+
+        <h2>Available to {{ property.contract_type }} for £{{ property.price }}</h2>
+
+        <div class="specs">
+          <div class="col-4">
+            <h5>PROPERTY TYPE</h5>
+            <h6>{{ property.type }}</h6>
+          </div>
+          <div class="col-4">
+            <h5>BEDROOMS</h5>
+            <h6>{{ property.no_bedrooms }}</h6>
+          </div>
+          <div class="col-4">
+            <h5>ADDED ON</h5>
+            <h6>{{ property.created_at }}</h6>
+          </div>
+        </div>
+
+        <div class="description">
+          <h2>Property description</h2>
+          <h3>{{property.description}}></h3>
+        </div>
+      {% else %}
+        <h3>Sorry, we could not find any properties :(</h3>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

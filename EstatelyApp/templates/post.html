@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-6">
+
+        {% if message %}
+          <button type="button" class="btn btn-success">{{ message }}</button>
+        {% else %}
+          <h2>Complete the form below to post your own property</h2>
+        {% endif %}
+
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" id="" name="title">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" id="" name="address">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Property type</label>
+            <select name="type">
+              <option>house</option>
+              <option value="flat / apartment">flat / apartment</option>
+              <option value="bungalow">bungalow</option>
+              <option value="land">land</option>
+              <option value="ommercial property">commercial property</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input type="number" class="form-control" id="" name="price">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Furnish type</label>
+            <select name="furnish_type">
+              <option value="F">furnished</option>
+              <option value="UF">unfurnished</option>
+              <option value="PF">partially furnished</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Contract type</label>
+            <select name="contract_type">
+              <option value="rent">to rent</option>
+              <option value="buy">to buy</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">No. bedrooms</label>
+            <select name="no_bedrooms">
+              <option value="0">studio</option>
+              <option value="1">1 bedroom</option>
+              <option value="2">2 bedrooms</option>
+              <option value="3">3 bedrooms</option>
+              <option value="4">4 bedrooms</option>
+              <option value="5">5 bedrooms</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">No. bathrooms</label>
+            <input type="number" class="form-control" id="" name="no_bathrooms">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Features</label>
+            <input type="text" class="form-control" id="" name="features">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" id="" name="description">
+          </div>
+
+          <input type="file" name="photo">
+
+          <button type="submit" class="btn btn-primary">Post</button><br><br><br>
+        </form>
+
+      </div>
+    </div>
+</section>
+
+{% endblock %}

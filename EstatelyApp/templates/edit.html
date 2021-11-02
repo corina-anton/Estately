@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-6">
+
+        {% if success %}
+        <div class="alert alert-success" role="alert">
+          {{ success }}
+        </div>
+        {% endif %}
+
+        {% if property %}
+
+        <form action="" method="POST">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" value="{{ property.title }}" name="title">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" value="{{ property.address }}" name="address">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Property type</label>
+            <select name="type">
+              <option value="house" {% if property.type == 'house' %} selected {% endif %}>house</option>
+              <option value="flat / apartment" {% if property.type == 'flat / apartment' %} selected {% endif %}>flat / apartment</option>
+              <option value="bungalow" {% if property.type == 'bungalow' %} selected {% endif %}>bungalow</option>
+              <option value="land" {% if property.type == 'land' %} selected {% endif %}>land</option>
+              <option value="commercial property" {% if property.type == 'commercial property' %} selected {% endif %}>commercial property</option>
+              <option value="other" {% if property.type == 'other' %} selected {% endif %}>other</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input type="number" class="form-control" value="{{ property.price }}" name="price">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Furnish type</label>
+            <select name="furnish_type">
+              <option value="F">furnished</option>
+              <option value="UF">unfurnished</option>
+              <option value="PF">partially furnished</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Contract type</label>
+            <select name="contract_type">
+              <option value="rent">to rent</option>
+              <option value="buy">to buy</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">No. bedrooms</label>
+            <select name="no_bedrooms">
+              <option value="0">studio</option>
+              <option value="1">1 bedroom</option>
+              <option value="2">2 bedrooms</option>
+              <option value="3">3 bedrooms</option>
+              <option value="4">4 bedrooms</option>
+              <option value="5">5 bedrooms</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">No. bathrooms</label>
+            <input type="number" class="form-control" value="{{ property.no_bathrooms }}" name="no_bathrooms">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Features</label>
+            <input type="text" class="form-control" value="{{ property.features }}" name="features">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" value="{{ property.description }}" name="description">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+
+        {% else %}
+        {% if error %}
+          <div class="alert alert-danger" role="alert">
+              {{ error }}
+          </div>
+        {% endif %}
+        {% endif %}
+
+      </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Hero // Find property functionality-->
+{% block content %}
+<section class="hero container">
+  <div style="background-image: url('hero_image.jpg');">
+    <section class="search-functionality col-6">
+      <h2>Find your happy place!</h2>
+      <h4>Search properties for sale or to rent in the UK</h4>
+      <form action="{% url 'EstatelyApp:search' %}">
+        <!-- The HTML form action attribute defines what should happen
+        <!-- to data when a form is submitted on a web page.
+        <!-- The value of the action attribute should be the URL of
+        <!-- the web resource that will process the contents of the form. -->
+        <div class="index-inputs">
+          <input type="text" class="form-control" placeholder="e.g. 'York', 'NW3', 'Waterloo Station'" name="search_input">
+          <select name="contract_type">
+            <option value="rent" selected>To rent</option>
+            <option value="buy">To buy</option>
+          </select>
+          <button type="submit" class="btn btn-success btn-text">Search</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="latest">
+      <div class="container">
+        <div class="row justify-content-start">
+          {% for property in properties %}
+          <div class="col-4">
+            <a href="{% url 'EstatelyApp:property' property.id %}"><img src="{{ property.get_thumbnail }}" alt="property photo"></a>
+            <h2><a href="{% url 'EstatelyApp:property' property.id %}">{{ property.title }}</a></h2>
+            <h3>{{ property.type }} to {{ property.contract_type }} for £{{ property.price }}</h3>
+            <p>{{ property.description }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+{% endblock %}
+<!-- Latest properties functionality -->

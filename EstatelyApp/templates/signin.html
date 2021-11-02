@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-6">
+
+          <div>
+            <h2>It's good to see you!</h2>
+            <p>Don't have an account? <a href="{% url 'EstatelyApp:signup'%}">Sign up</a></p>
+          </div>
+
+          <form action="" method="POST">
+            {% csrf_token %}
+
+            {% if error %}
+              <div>
+                <div class="alert alert-danger" role="alert">
+                {{ error }}
+                </div>
+              </div>
+            {% endif %}
+
+            <div class="mb-3">
+              <label class="form-label">Email address</label>
+              <input type="email" class="form-control" name="email">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" name="password">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </form>
+      </div>
+    </div>
+</section>
+
+{% endblock %}

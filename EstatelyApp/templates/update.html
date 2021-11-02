@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-6">
+
+          <br><br><h2>Update your details:</h2>
+
+          {% if success %}
+          <div class="alert alert-success" role="alert">
+            {{ success }}
+          </div>
+          {% endif %}
+
+          <!-- {% if form.errors %}
+           {% for field in form %}
+             {% for error in field.errors %}
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+             {% endfor %}
+           {% endfor %}
+          {% endif %} -->
+
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label">First name</label>
+              <input type="text" class="form-control" name="first_name" value="{{ user.first_name }}">
+
+              {% if 'first_name' in form.errors %}
+                <div class="alert alert-danger">
+                     <strong>{{ form.first_name.errors|escape }}</strong>
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Last name</label>
+              <input type="text" class="form-control" id="" name="last_name" value="{{ user.last_name }}">
+
+              {% if 'last_name' in form.errors %}
+                <div class="alert alert-danger">
+                     <strong>{{ form.last_name.errors|escape }}</strong>
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Postcode (optional)</label>
+              <input type="text" class="form-control" id="" name="postcode" value="{{ user.postcode }}">
+
+              {% if 'postcode' in form.errors %}
+                <div class="alert alert-danger">
+                     <strong>{{ form.postcode.errors|escape }}</strong>
+                </div>
+              {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button><br><br>
+
+            <h5>If you want to change your email or password, <a href="{% url 'EstatelyApp:update_login' %}">click here</a>.</h5>
+
+          </form>
+      </div>
+    </div>
+</section>
+{% endblock %}

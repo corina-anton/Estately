@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="search-filters col-12">
+  <h2>Properties close to {{ search_input }}</h2>
+  <section class="first-column col-6">
+
+    <form action="" class="search_filters">
+      <input type="text" class="form-control" value="{{ search_input }}" name="search_input">
+
+      <div class="">
+        <label>Property type</label>
+        <select name="type">
+          <option value="house">house</option>
+          <option value="flat / apartment" selected>flat / apartment</option>
+          <option value="bungalow">bungalow</option>
+          <option value="land">land</option>
+          <option value="commercial property">commercial property</option>
+          <option value="other">other</option>
+        </select>
+      </div>
+
+      <div class="">
+        <label>Bedrooms</label>
+        <select name="no_bedrooms">
+          <option value="0">studio</option>
+          <option value="1">1 bedroom</option>
+          <option value="2">2 bedrooms</option>
+          <option value="3">3 bedrooms</option>
+          <option value="3">3 bedrooms</option>
+          <option value="4">4 bedrooms</option>
+          <option value="5">5 bedrooms</option>
+        </select>
+      </div>
+
+      <div class="">
+        <label>Furnish type</label>
+        <select name="furnish_type">
+          <option value="F">furnished</option>
+          <option value="UF">unfurnished</option>
+          <option value="PF">partially furnished</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Price range</label>
+        <div class="row gy-2 gx-3 align-items-center">
+          <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingInputGroup">min. price</label>
+            <div class="input-group">
+              <div class="input-group-text">£</div>
+              <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="min. price" name="min_price">
+            </div>
+          </div>
+
+          <div class="col-auto">
+          <label class="visually-hidden" for="autoSizingInputGroup">max. price</label>
+          <div class="input-group">
+            <div class="input-group-text">£</div>
+            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="max. price" name="max_price">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success btn-text">Search</button>
+        <div>
+      </div>
+    </form>
+
+    <section class="latest">
+      <div class="container">
+        <div class="row justify-content-start">
+          {% if properties %}
+            {% for property in properties %}
+            <a href="{% url 'property' property.id %}"><div class="col-4">
+              <h2>{{ property.title }}</h2>
+              <h3>{{ property.type }} to {{ property.contract_type }} for £{{ property.price }}</h3>
+              <p>{{ property.description }}</p>
+            </div></a>
+            {% endfor %}
+          {% else %}
+            <p>We could not find any property :(</p>
+          {% endif %}
+      </div>
+      </div>
+    </section>
+
+{% endblock %}

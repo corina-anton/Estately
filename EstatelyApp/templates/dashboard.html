@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col-6">
+      <h2>It's good to see you, {{ user.first_name }}!</h2>
+    </div>
+    <div class="col-6">
+      <a href="{% url 'EstatelyApp:post' %}"><button type="button" class="btn btn-primary">Rent or sell your property</button></a>
+      <a href="{% url 'EstatelyApp:update' %}"><i class="fas fa-cog"></i></a>
+    </div>
+
+    <div><br><br><br>
+
+      <h3>Your posted properties:</h3>
+
+      <div class="container">
+        <div class="row justify-content-start">
+          {% if properties %}
+          {% for property in properties %}
+          <div class="col-3">
+            <h2><a href="{% url 'EstatelyApp:property' property.id %}">{{ property.title }}</a></h2>
+            <h3>{{ property.type }} to {{ property.contract_type }} for £{{ property.price }}</h3>
+            <p>{{ property.description }}</p>
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}
