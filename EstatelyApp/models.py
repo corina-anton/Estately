@@ -72,4 +72,5 @@ class User(AbstractUser):
 
 class Photo(models.Model):
     property = models.ForeignKey(Property, on_delete = models.CASCADE, null = True)
+    # The upload_to attribute concatenates MEDUA_URL with the value
     photo = models.ImageField(upload_to='media/')

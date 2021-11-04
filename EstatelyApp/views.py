@@ -150,6 +150,19 @@ def update_login(request):
     return HttpResponse('continue this later')
 
 @login_required
+def delete_account(request):
+    if request.method == 'GET':
+        return render(request, 'delete_account.html')
+
+    if request.method == 'POST':
+
+        User.objects.filter(pk=request.user.id).delete()
+
+        logout(request)
+
+        return redirect("EstatelyApp:index")
+
+@login_required
 def dashboard(request):
     auth_id = request.user.id
 

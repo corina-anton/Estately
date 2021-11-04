@@ -34,8 +34,9 @@ urlpatterns = [
     path('edit/<int:id>/', views.edit, name='edit'),
     path('delete/<int:id>/', views.delete, name='delete'),
     path('account', views.update, name='update'),
-    path('update_login', views.update_login, name='update_login')
+    path('update_login', views.update_login, name='update_login'),
+    path('delete_account', views.delete_account, name='delete_account')
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

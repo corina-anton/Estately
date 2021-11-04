@@ -29,7 +29,7 @@
         <div class="row justify-content-start">
           {% for property in properties %}
           <div class="col-4">
-            <a href="{% url 'EstatelyApp:property' property.id %}"><img src="{{ property.get_thumbnail }}" alt="property photo"></a>
+            <a href="{% url 'EstatelyApp:property' property.id %}"><img src="{% static property.get_thumbnail %}" alt="property photo"></a>
             <h2><a href="{% url 'EstatelyApp:property' property.id %}">{{ property.title }}</a></h2>
             <h3>{{ property.type }} to {{ property.contract_type }} for £{{ property.price }}</h3>
             <p>{{ property.description }}</p>

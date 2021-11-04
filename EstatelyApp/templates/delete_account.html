@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+  <h4>Sorry to see you go :(</h4>
+  <h5>Are you sure you want to delele your account?</h5>
+  <div>
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-outline-danger">Yes, I am sure</button>
+    </form>
+    <!-- <input type="submit" class="btn btn-primary" value="Yes, I am sure"> -->
+    <!-- <button type="submit" class="btn btn-outline-danger">Yes, I am sure</button> -->
+    <a class="btn btn-outline-warning" href="{% url 'EstatelyApp:update' %}" role="button">No, take me back</a>
+  </div>
+</section>
+{% endblock %}
