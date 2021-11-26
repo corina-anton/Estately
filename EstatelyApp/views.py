@@ -18,6 +18,24 @@ def index(request):
     last_two = extract_properties(2)
     return render(request, 'index.html', context={ 'properties': last_two })
 
+@login_required
+def bookmark(request, id):
+
+    # extract property id from request
+    # verify if the property exists in the db; if it does not, raise error
+    property = Property.objects.filter(id=id)
+
+    if not property.exists():
+        return HttpResponse('error')
+    else:
+        # create an object instance of the property
+        property = property.first()
+
+    # save bookmark
+    property.bookmarks.add(request.user)
+
+    return HttpResponse('success')
+
 def search(request):
     if request.method == 'GET':
         return render(request, 'search.html')

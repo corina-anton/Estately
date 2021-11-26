@@ -4,6 +4,18 @@ from django.core.validators import MaxValueValidator
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here:
+class User(AbstractUser):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    postcode = models.CharField(max_length=15)
+    email = models.EmailField(max_length=40, unique=True)
+    password = models.TextField()
+
+    # REQUIRED_FIELDS=[]
+    # # This forces Django to use the email as the username. The username is
+    # # used as part of the authentication checks performed by
+    # # `authenticate()` function
+    # USERNAME_FIELD='email'
 
 class Property(models.Model):
 
@@ -49,26 +61,14 @@ class Property(models.Model):
     description = models.TextField(max_length=800)
     address = models.CharField(max_length=250)
 
+    bookmarks = models.ManyToManyField(User, related_name = 'bookmarks')
+
     # Helper:
     def get_thumbnail(self):
         if self.photo_set.count():
             return self.photo_set.all()[0].photo
         else:
             return "static/hero_image.jpg"
-
-
-class User(AbstractUser):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    postcode = models.CharField(max_length=15)
-    email = models.EmailField(max_length=40, unique=True)
-    password = models.TextField()
-
-    # REQUIRED_FIELDS=[]
-    # # This forces Django to use the email as the username. The username is
-    # # used as part of the authentication checks performed by
-    # # `authenticate()` function
-    # USERNAME_FIELD='email'
 
 class Photo(models.Model):
     property = models.ForeignKey(Property, on_delete = models.CASCADE, null = True)

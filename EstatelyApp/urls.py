@@ -35,7 +35,8 @@ urlpatterns = [
     path('delete/<int:id>/', views.delete, name='delete'),
     path('account', views.update, name='update'),
     path('update_login', views.update_login, name='update_login'),
-    path('delete_account', views.delete_account, name='delete_account')
+    path('delete_account', views.delete_account, name='delete_account'),
+    path('bookmark/<int:id>/', views.bookmark, name='bookmark')
 ]
 
 # if settings.DEBUG:
